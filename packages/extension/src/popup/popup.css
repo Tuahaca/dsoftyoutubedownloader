@@ -1,0 +1,227 @@
+@import '../lib/theme.css';
+
+body {
+  width: 380px;
+  min-height: 160px;
+  max-height: 560px;
+  overflow-y: auto;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+main {
+  padding: 14px;
+}
+
+h2 {
+  margin: 0;
+  padding: 10px 14px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- states ---------- */
+
+.state {
+  text-align: center;
+  padding: 18px 8px;
+}
+
+.state p {
+  margin: 0 0 10px;
+}
+
+.state .btn {
+  margin-top: 4px;
+}
+
+.skeleton {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 12px;
+}
+
+.skeleton div {
+  background: var(--surface);
+  border-radius: 6px;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.skeleton .thumb {
+  height: 68px;
+}
+
+.skeleton .lines {
+  display: grid;
+  gap: 8px;
+  background: none;
+  animation: none;
+}
+
+.skeleton .lines div {
+  height: 12px;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ---------- video card ---------- */
+
+.video {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.video img {
+  width: 120px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.video .title {
+  margin: 0 0 4px;
+  font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.picker {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.segmented {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.segmented button {
+  border: none;
+  background: var(--bg);
+  padding: 7px 0;
+}
+
+.segmented button[aria-pressed='true'] {
+  background: var(--surface);
+  font-weight: 600;
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.row select {
+  flex: 1;
+}
+
+/* ---------- job & history lists ---------- */
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0 14px 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.item {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 8px 10px;
+}
+
+.item-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.item-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.tag {
+  flex: none;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.progress {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border);
+  overflow: hidden;
+  margin: 6px 0 4px;
+}
+
+.progress > div {
+  height: 100%;
+  background: var(--progress);
+  transition: width 0.25s linear;
+}
+
+.progress.indeterminate > div {
+  width: 30% !important;
+  animation: slide 1.1s ease-in-out infinite;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(340%);
+  }
+}
+
+.item-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.status-done {
+  color: var(--ok);
+}
+
+.status-failed {
+  color: var(--error);
+}

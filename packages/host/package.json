@@ -1,0 +1,13 @@
+{
+  "name": "@ytdl/host",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Native Messaging host: runs yt-dlp/ffmpeg on behalf of the extension.",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "@ytdl/shared": "*"
+  }
+}

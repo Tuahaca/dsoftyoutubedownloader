@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YT Downloader Options</title>
+  </head>
+  <body>
+    <main class="page">
+      <h1>YT Downloader</h1>
+
+      <form id="settings-form" class="card" novalidate>
+        <h2>Downloads</h2>
+
+        <label class="field">
+          <span>Output folder</span>
+          <input id="outputDir" type="text" spellcheck="false" autocomplete="off" />
+          <small class="muted" id="outputDir-hint">Leave empty to use the default folder.</small>
+          <small class="error-text" id="outputDir-error" hidden>Enter an absolute path, e.g. C:\Users\you\Videos</small>
+        </label>
+
+        <div class="grid">
+          <label class="field">
+            <span>Default format</span>
+            <select id="defaultMode">
+              <option value="video">Video (MP4)</option>
+              <option value="audio">Audio</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Default video quality</span>
+            <select id="defaultHeight"></select>
+          </label>
+          <label class="field">
+            <span>Default audio format</span>
+            <select id="audioFormat">
+              <option value="mp3">MP3 (best quality)</option>
+              <option value="m4a">M4A (original, no re-encode)</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Downloads at once</span>
+            <select id="maxConcurrent">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" type="submit">Save</button>
+          <span id="saved" class="muted" role="status"></span>
+        </div>
+      </form>
+
+      <section class="card">
+        <h2>Helper app</h2>
+        <dl id="status" class="status"><dt>Status</dt><dd>Checking…</dd></dl>
+        <p class="muted">
+          If downloads start failing, update yt-dlp first:
+          <code>winget upgrade yt-dlp.yt-dlp</code>
+        </p>
+        <button id="recheck" class="btn" type="button">Check again</button>
+      </section>
+
+      <p class="muted small">
+        For personal use only. Download only content you own or have permission to download.
+      </p>
+    </main>
+    <script type="module" src="/src/options/main.ts"></script>
+  </body>
+</html>

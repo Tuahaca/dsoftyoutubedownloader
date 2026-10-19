@@ -1,0 +1,24 @@
+{
+  "id": "abcdefghijk",
+  "title": "Sample Creative Commons Clip",
+  "channel": "Sample Channel",
+  "uploader": "Sample Uploader",
+  "duration": 634,
+  "thumbnail": "https://i.ytimg.com/vi/abcdefghijk/maxresdefault.jpg",
+  "live_status": "not_live",
+  "is_live": false,
+  "formats": [
+    { "format_id": "sb0", "vcodec": "none", "acodec": "none", "width": 160, "height": 90 },
+    { "format_id": "140", "vcodec": "none", "acodec": "mp4a.40.2", "ext": "m4a" },
+    { "format_id": "251", "vcodec": "none", "acodec": "opus", "ext": "webm" },
+    { "format_id": "160", "vcodec": "avc1.4d400c", "acodec": "none", "width": 256, "height": 144 },
+    { "format_id": "134", "vcodec": "avc1.4d401e", "acodec": "none", "width": 640, "height": 360 },
+    { "format_id": "18", "vcodec": "avc1.42001E", "acodec": "mp4a.40.2", "width": 640, "height": 360 },
+    { "format_id": "136", "vcodec": "avc1.4d401f", "acodec": "none", "width": 1280, "height": 720 },
+    { "format_id": "137", "vcodec": "avc1.640028", "acodec": "none", "width": 1920, "height": 1080 },
+    { "format_id": "248", "vcodec": "vp9", "acodec": "none", "width": 1920, "height": 1080 },
+    { "format_id": "313", "vcodec": "vp9", "acodec": "none", "width": 3840, "height": 2160 }
+  ],
+  "description": "Long description that the popup never needs.",
+  "automatic_captions": { "en": [] }
+}

@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "YT Downloader",
+  "short_name": "YT Downloader",
+  "version": "0.1.0",
+  "description": "Download YouTube videos (MP4) or audio (MP3/M4A) through a local yt-dlp helper app.",
+  "minimum_chrome_version": "116",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjO0hoPMSHr+LPFUZK02psV1Khchc4dnSkoPUSnwcGVKsCaiuegitM9w0ClDXAknbfjy9gK9De3HYUvgZoccDuuyog+Kpjx1yz4XWUke+h7JXG8WZoV2xSNNQ8wRQkJkXBLo7nCWknbQ43FuokDrHMGaZhlijeRgvmsVGHV9SnvogJFEuMCvyfO81gQYwvlL3+5jWO6kuEaUOruOgAtQYRIxqjihKK48MrjYEFcb2hlnHsTrM7LvAD2V5h7KAPPElc+hjuRXvZlf1+Y6rtTjl2XGBlSYSHjxfwIf3pc1Qs//b9bd+sP6ZwZsbQeGpbsAlPpLcOuxACWqW2O+dmb7l1QIDAQAB",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_title": "Download this video",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions": ["nativeMessaging", "storage", "notifications", "activeTab"],
+  "host_permissions": ["*://*.youtube.com/*", "*://youtu.be/*"]
+}

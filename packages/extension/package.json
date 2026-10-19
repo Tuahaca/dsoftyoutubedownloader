@@ -1,0 +1,13 @@
+{
+  "name": "@ytdl/extension",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch --mode development"
+  },
+  "dependencies": {
+    "@ytdl/shared": "*"
+  }
+}

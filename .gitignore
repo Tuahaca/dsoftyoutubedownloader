@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+*.log
+.DS_Store
+
+# Never commit the extension's private signing key (only the public key lives in manifest.json)
+*.pem

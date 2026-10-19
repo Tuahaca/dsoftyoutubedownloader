@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    // DOM only for the WHATWG URL global (present in both Chrome and Node). Shared code must
+    // not use document/window or any Node module: it runs in the extension and the host.
+    "lib": ["ES2022", "DOM"],
+    "types": []
+  },
+  "include": ["src"]
+}
