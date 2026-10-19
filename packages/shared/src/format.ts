@@ -45,7 +45,8 @@ export const FRIENDLY_ERRORS: Record<ErrorCode, string> = {
   NETWORK: 'Network problem while talking to YouTube. Check your connection and try again.',
   DEPENDENCY_MISSING: 'yt-dlp or ffmpeg is missing. Install them, then restart Chrome.',
   CANCELLED: 'Cancelled.',
-  HOST_MISSING: 'The helper app is not installed. Run "npm run host:install", then restart Chrome.',
+  HOST_MISSING:
+    'Chrome can\'t find the helper app. Run "npm run host:install", then fully restart Chrome by opening chrome://restart (closing windows is not enough).',
   HOST_FORBIDDEN: 'The helper app does not trust this extension ID. Run "npm run host:install" again.',
   HOST_DISCONNECTED: 'The helper app stopped unexpectedly.',
   UNKNOWN: 'Something went wrong.',

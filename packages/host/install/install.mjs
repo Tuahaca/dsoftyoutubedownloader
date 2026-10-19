@@ -3,7 +3,16 @@
 import { spawnSync } from 'node:child_process';
 import { writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { existsSync, HOST_NAME, hostDist, readExtensionId, REG_KEY, which } from './lib.mjs';
+import {
+  existsSync,
+  HOST_NAME,
+  hostDist,
+  readExtensionId,
+  readPreviousConfig,
+  REG_KEY,
+  stillExists,
+  which,
+} from './lib.mjs';
 
 if (process.platform !== 'win32') {
   console.error('Only Windows is supported by this installer for now (macOS/Linux are planned for v1.1).');
@@ -17,15 +26,19 @@ if (!existsSync(hostScript)) {
 }
 
 const extensionId = readExtensionId();
-const ytDlpPath = which('yt-dlp');
-const ffmpegPath = which('ffmpeg');
-const denoPath = which('deno');
+const configPath = join(hostDist, 'host-config.json');
+const previous = readPreviousConfig(configPath);
+// Fresh lookup first; fall back to the last recorded path if it still exists (e.g. a re-run
+// from an old terminal whose PATH predates the winget install).
+const ytDlpPath = which('yt-dlp') ?? stillExists(previous.ytDlpPath);
+const ffmpegPath = which('ffmpeg') ?? stillExists(previous.ffmpegPath);
+const denoPath = which('deno') ?? stillExists(previous.denoPath);
 
 // Absolute node path: Chrome's PATH may not include Node.
 const batPath = join(hostDist, 'host.bat');
 writeFileSync(batPath, `@echo off\r\n"${process.execPath}" "%~dp0host.cjs" %*\r\n`);
 
-writeFileSync(join(hostDist, 'host-config.json'), JSON.stringify({ ytDlpPath, ffmpegPath, denoPath }, null, 2) + '\n');
+writeFileSync(configPath, JSON.stringify({ ytDlpPath, ffmpegPath, denoPath }, null, 2) + '\n');
 
 const manifestPath = join(hostDist, `${HOST_NAME}.json`);
 writeFileSync(
@@ -69,4 +82,5 @@ if (missing.length) {
   console.log('\n⚠ Missing dependencies. Install them, open a NEW terminal, and run "npm run host:install" again:');
   for (const cmd of missing) console.log(`    ${cmd}`);
 }
-console.log('\nRestart Chrome (close every window) so it picks up the helper.');
+console.log('\nFully restart Chrome so it picks up the helper: open chrome://restart in the address bar.');
+console.log('(Closing the windows is not enough. Chrome keeps running in the system tray.)');

@@ -1,6 +1,6 @@
 // Shared helpers for install.mjs / uninstall.mjs (plain Node, no build step needed).
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { delimiter, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -33,6 +33,31 @@ function isFile(p) {
   }
 }
 
+function listDirs(dir) {
+  try {
+    return readdirSync(dir, { withFileTypes: true })
+      .filter((d) => d.isDirectory())
+      .map((d) => join(dir, d.name));
+  } catch {
+    return [];
+  }
+}
+
+/** Same search as host/src/which.ts: winget package folders are on PATH only for newer processes. */
+function findInWingetPackages(name) {
+  const root = join(process.env.LOCALAPPDATA ?? join(homedir(), 'AppData', 'Local'), 'Microsoft', 'WinGet', 'Packages');
+  const file = `${name}.exe`;
+  for (const pkg of listDirs(root)) {
+    if (isFile(join(pkg, file))) return join(pkg, file);
+    for (const sub of listDirs(pkg)) {
+      for (const candidate of [join(sub, file), join(sub, 'bin', file)]) {
+        if (isFile(candidate)) return candidate;
+      }
+    }
+  }
+  return null;
+}
+
 export function which(name) {
   const dirs = (process.env.PATH ?? process.env.Path ?? '').split(delimiter).filter(Boolean);
   if (process.platform === 'win32') {
@@ -45,7 +70,21 @@ export function which(name) {
       if (isFile(candidate)) return candidate;
     }
   }
-  return null;
+  return process.platform === 'win32' ? findInWingetPackages(name) : null;
+}
+
+/** Reads a previously written host-config.json so a re-run never replaces a working path with null. */
+export function readPreviousConfig(file) {
+  try {
+    const parsed = JSON.parse(readFileSync(file, 'utf8'));
+    return parsed && typeof parsed === 'object' ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+export function stillExists(p) {
+  return typeof p === 'string' && isFile(p) ? p : null;
 }
 
 export { existsSync };

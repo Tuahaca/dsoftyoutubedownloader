@@ -127,8 +127,8 @@ Then remove the extension in `chrome://extensions` and delete the folder.
 
 | Message / symptom | Fix |
 |---|---|
-| "Helper app not found" | Run `npm run host:install` again, then restart Chrome. |
-| "yt-dlp / ffmpeg missing" | Install them (step 1) and **restart Chrome** so it picks up the new PATH. |
+| "Chrome can't find the helper app" | Run `npm run host:install`, then type `chrome://restart` in the address bar. Closing the windows isn't enough: Chrome keeps running in the background (system tray) and only sees a newly registered helper after a full restart. |
+| "yt-dlp or ffmpeg is missing" | Install them (step 1), then run `npm run host:install` again. It also searches winget's install folders, so an old terminal is fine. No Chrome restart is needed; just reopen the popup. In PowerShell, use `npm.cmd run host:install` if scripts are blocked. |
 | "Sign in to confirm you're not a bot" | YouTube is rate-limiting you. Wait and try again later. Signed-in (cookie) downloads aren't supported in v1. |
 | Download stuck or fails on many videos | Update yt-dlp: `winget upgrade yt-dlp.yt-dlp` |
 | Private / age-restricted / unavailable | These aren't supported. |

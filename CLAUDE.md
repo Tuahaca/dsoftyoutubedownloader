@@ -43,4 +43,5 @@ Before any feature work, read `intent.md` (why) and `spec.md` (what). If they co
 - **Tests that hit YouTube.** Unit tests must use fixtures in `__fixtures__/`. Network tests belong only in `test:integration`.
 - **Hardcoding the extension ID.** `install/lib.mjs` derives it from the manifest `key`. If the key changes, the ID changes and users must re-run `host:install`.
 - **Passing the raw tab URL to yt-dlp.** Use `parseYouTubeVideoId()`, then `canonicalWatchUrl()`. Shared code stays free of DOM/Node APIs; it only uses the `URL` global.
+- **Trusting PATH to find winget tools.** Chrome (and the host it launches) keeps the PATH it started with, and `chrome://restart` doesn't refresh it. `which()` also scans `%LOCALAPPDATA%\Microsoft\WinGet\Packages`, and `install.mjs` keeps the previous path instead of writing `null`.
 - **Icons.** They come from `npm run icons` (`scripts/generate-icons.mjs`). Don't hand-edit the PNGs.
