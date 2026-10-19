@@ -1,4 +1,4 @@
-# YouTube Downloader — Chrome Extension
+# Dynamicsoft Youtube downloader — Chrome Extension
 
 Download YouTube videos as **MP4** (choose 360p–1080p, higher when available) or as audio (**MP3 / M4A**) straight from the Chrome toolbar.
 

@@ -1,4 +1,4 @@
-# YouTube Downloader Chrome Extension
+# Dynamicsoft Youtube downloader (Chrome extension)
 
 Before any feature work, read `intent.md` (why) and `spec.md` (what). If they conflict with this file, ask the user. Don't guess.
 

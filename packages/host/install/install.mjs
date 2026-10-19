@@ -46,7 +46,7 @@ writeFileSync(
   JSON.stringify(
     {
       name: HOST_NAME,
-      description: 'YouTube Downloader helper (runs yt-dlp/ffmpeg locally)',
+      description: 'Dynamicsoft Youtube downloader helper (runs yt-dlp/ffmpeg locally)',
       path: batPath,
       type: 'stdio',
       allowed_origins: [`chrome-extension://${extensionId}/`],
